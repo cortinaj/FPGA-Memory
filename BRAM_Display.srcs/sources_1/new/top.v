@@ -23,9 +23,9 @@
 module top(
     input clk,
     input rst,
-    input [7:0] SW,
+    input [7:0] sw,
     input [4:0] PB,
-    output [7:0] LED,
+    output [7:0] led,
     output [6:0] seg,
     output reg [1:0] an
     );
@@ -42,7 +42,7 @@ module top(
     wire[7:0] bram_addr; //Utilize SW or PB
     wire [6:0] seg0, seg1;
     
-    assign bram_addr = (SW!= 8'b0) ? SW : addr_ptr;
+    assign bram_addr = (sw!= 8'b0) ? sw : addr_ptr;
     
     // Instantiate Clock Divider
     clk_div #(.DIVISOR(50_000_000)) div1Hz(.clk_in(clk),
@@ -110,7 +110,7 @@ Seven_Seg_Decoder decoder (
     .hex(hex_to_display),
     .segs(seg)
 );   
-     assign LED = dout;
+     assign led = dout;
      
      
 endmodule
